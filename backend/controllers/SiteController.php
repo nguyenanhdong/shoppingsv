@@ -5,7 +5,7 @@ use Yii;
 use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
-use backend\models\Employee;
+use common\models\LoginForm;
 use common\models\Order;
 use yii\web\NotFoundHttpException;
 /**
@@ -19,20 +19,20 @@ class SiteController extends Controller
     public function behaviors()
     {
         return [
-            // 'access' => [
-            //     'class' => AccessControl::className(),
-            //     'rules' => [
-            //         [
-            //             'actions' => ['login', 'error'],
-            //             'allow' => true,
-            //         ],
-            //         [
-            //             'actions' => ['logout', 'index','update','delete'],
-            //             'allow' => true,
-            //             'roles' => ['@'],
-            //         ],
-            //     ],
-            // ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'actions' => ['login', 'error'],
+                        'allow' => true,
+                    ],
+                    [
+                        'actions' => ['logout', 'index','update','delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -62,10 +62,10 @@ class SiteController extends Controller
     public function actionIndex()
     {
         $order = new Order();
-        $AllOrder = $order->getOrder('all');
-        $WaittingOrder = $order->getOrder('waitting');
-        $ProcessingOrder = $order->getOrder('processing');
-        $DeleteOrder = $order->getOrder('delete');
+        $AllOrder = [];//$order->getOrder('all');
+        $WaittingOrder = [];//$order->getOrder('waitting');
+        $ProcessingOrder = [];//$order->getOrder('processing');
+        $DeleteOrder = [];//$order->getOrder('delete');
         // echo '<pre>';
        
         // var_dump($AllOrder);
@@ -121,17 +121,19 @@ class SiteController extends Controller
      * @return string
      */
     public function actionLogin()
-    {
+    { 
+        $this->layout = 'login';
         // var_dump(Yii::$app->user);die;
         if (!Yii::$app->user->isGuest) {
             return $this->goHome();
         }
-        $model = new Employee();
+        $model = new LoginForm();
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
+           
+            Yii::$app->user->identity->save();
+            
             return $this->goBack();
         } else {
-            $model->password = '';
-
             return $this->render('login', [
                 'model' => $model,
             ]);

@@ -7,28 +7,35 @@
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 
-$this->title = 'Login';
-$this->params['breadcrumbs'][] = $this->title;
+$this->title = Yii::t('app','Login');
+// $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="site-login">
-    <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>Please fill out the following fields to login:</p>
-
-    <div class="row">
-        <div class="col-lg-5">
-            <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
-
-                <?= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-
-                <?= $form->field($model, 'password')->passwordInput() ?>
-
-
-                <div class="form-group">
-                    <?= Html::submitButton('Login', ['class' => 'btn btn-primary', 'name' => 'login-button']) ?>
-                </div>
-
-            <?php ActiveForm::end(); ?>
-        </div>
+    <div style="text-align:center">
+        <h1>__ SHOP ERP __</h1>
+        <h4 class="form-title"><?= $this->title ?></h4>
     </div>
+    <?php $form = ActiveForm::begin(['id' => 'login-form']); ?>
+
+    <?= $form->field($model, 'username')->textInput(['autofocus' => true, 'class'=>'form-control form-control-solid placeholder-no-fix', 'placeholder'=>'Tài khoản'])->label(false) ?>
+
+    <?= $form->field($model, 'password')->passwordInput(['placeholder'=> 'Mật khẩu'])->label(false) ?>
+
+    <div class="form-group">
+        <?= Html::submitButton( 'Đăng nhập', ['class' => 'btn btn-danger', 'name' => 'login-button', 'style' => 'width:100%']) ?>
+    </div>
+    <?php /*
+    <div class="login-options">
+        <h4><?= Yii::t('backend/login', 'Or login with'); ?></h4>
+        <ul class="social-icons">
+            <li>
+                <a class="social-icon-color facebook" data-original-title="facebook" href="javascript:;"></a>
+            </li>
+            <li>
+                <a class="social-icon-color googleplus" data-original-title="Goole Plus" href="javascript:;"></a>
+            </li>
+        </ul>
+    </div> */ ?>
+    <?php ActiveForm::end(); ?>  
 </div>
+

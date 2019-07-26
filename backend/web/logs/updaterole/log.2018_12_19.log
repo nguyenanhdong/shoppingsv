@@ -1,0 +1,5 @@
+2018-12-19 14:28:53: {"dataremove":[],"dataAdd":["\/api\/apilogin"],"type":"role","adminid":"95","adminname":"dstDev"}
+2018-12-19 14:41:56: {"dataremove":[],"dataAdd":["\/operate\/*"],"type":"role","adminid":"95","adminname":"dstDev"}
+2018-12-19 14:42:03: {"dataremove":["\/operate\/*"],"dataAdd":["\/accountingciaolink\/*","\/operate\/*"],"type":"role","adminid":"95","adminname":"dstDev"}
+2018-12-19 14:42:14: {"dataremove":["\/accountingciaolink\/*","\/operate\/*"],"dataAdd":["\/accountingciaolink\/*","\/operate\/*","\/report\/viettelpay"],"type":"role","adminid":"95","adminname":"dstDev"}
+2018-12-19 14:42:31: {"dataremove":[],"dataAdd":["Xem b\u00e1o c\u00e1o"],"type":"role","adminid":"95","adminname":"dstDev"}
